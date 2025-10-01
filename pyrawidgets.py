@@ -26,7 +26,7 @@ class LinearDateSelector():
         self.textlabel_date = ttk.Label(master=self.subframe_date, textvariable=self.strvar_date, style=self.stylename_caption)
         self.textlabel_datecaption = ttk.Label(master=self.subframe_date, textvariable=self.strvar_dayofweek, style=self.stylename_caption)
 
-    def pwpack(self, side, padx=0, pady=0):
+    def pack(self, side, padx=0, pady=0):
         self.widgetframe.pack(side=side, fill='x', padx=padx, pady=pady,expand=1)
         self.button_prevdate.pack(side='left',anchor='w', padx=5, pady=5)
         self.button_jumptotoday.pack(side='left',anchor='e', padx=5, pady=5)
@@ -99,13 +99,13 @@ class TabularFrame():
         self.subframe_table.bind("<Configure>", self.on_frame_configure)
         self.thing = SimpleCalendar(master=self.subframe_table)
 
-    def pwpack(self, side, padx, pady):
+    def pack(self, side, padx, pady):
         self.widgetframe.pack(side=side, padx=padx, pady=pady, fill='both', expand=1)
         self.subframe_header.pack(side='top', fill='x')
         self.subframe_content.pack(side='top', fill='both', expand=1)
         self.tabulate_yscroll.pack(side='right', fill='y')
         self.tabulate_xscroll.pack(side='bottom', fill='x')
-        self.thing.pwpack(side='top')
+        self.thing.pack(side='top')
 
     def on_frame_configure(self, event):
         self.subframe_content.configure(scrollregion=self.subframe_content.bbox("all"))
@@ -132,7 +132,7 @@ class LinearMonthSelector():
         self.subframe_month = ttk.Frame(master=self.subframe_monthselector)
         self.textlabel_currentmonth = ttk.Label(master=self.subframe_month, textvariable=self.strvar_monthdate, justify='center', style=self.stylename_caption)
 
-    def pwpack(self, side, padx=0, pady=0):
+    def pack(self, side, padx=0, pady=0):
         self.widgetframe.pack(side=side, fill='x', expand=0, padx=padx, pady=pady)
         self.subframe_monthselector.pack(side='top', padx=5, pady=5, fill='x', expand=1)
         self.button_prevmonth.pack(side='left', padx=5, pady=5)
@@ -283,7 +283,7 @@ class SimpleCalendar():
                     self.warray_thirdrow.append(ttk.Label(master=self.warray_frame_calendar[((row-1)*7)+d], textvariable=self.warray_strvar_thirdrow[((row-1)*7)+d], width=1))
                     self.warray_thirdrow[((row-1)*7)+d].pack(side='top', fill='x')
 
-    def pwpack(self, side, padx=0, pady=0):
+    def pack(self, side, padx=0, pady=0):
         self.widgetframe.pack(side=side, fill='x', expand=0, padx=padx, pady=pady)
         self.subframe_monthselector.pack(side='top', padx=5, pady=5, fill='x', expand=1)
         self.button_prevmonth.pack(side='left', padx=5, pady=5)
@@ -571,7 +571,7 @@ class DateEntry():
         # นอกจากนั้นให้เป็น range(1,31)
         # อันนี้จะต้องทริกเกอร์ทุกครั้งที่ค่าในช่องใดๆ มีการเปลี่ยนแปลง
 
-    def pwpack(self, side, padx=0, pady=0, fill=True, expand=0):
+    def pack(self, side, padx=0, pady=0, fill=True, expand=0):
         self.widgetframe.pack(side=side, padx=padx, pady=pady, fill='x' if fill else 'none', expand=expand)
         if self.order == 'ymd':
             self.subframe_year.pack(side='left', fill='x' if fill else 'none', expand=expand, padx=5)
@@ -662,7 +662,7 @@ class TimeEntry():
         self.intvar_month.set(f"{source_time.minute:02}")
         self.intvar_year.set(f"{source_time.second:02}")
 
-    def pwpack(self, side, padx=0, pady=0, fill=True, expand=0):
+    def pack(self, side, padx=0, pady=0, fill=True, expand=0):
         self.widgetframe.pack(side=side, padx=padx, pady=pady, fill='x' if fill else 'none', expand=expand)
         self.subframe_hour.pack(side='left', fill='x' if fill else 'none', expand=expand, padx=5)
         self.subframe_minute.pack(side='left', fill='x' if fill else 'none', expand=expand)
@@ -724,7 +724,7 @@ class EntryField(FormField):
         if read_only:
             self.input.bind('<Key>','break')
 
-    def pwpack(self, side, fill, anchor, padx, pady):
+    def pack(self, side, fill, anchor, padx, pady):
         self.widgetframe.pack(side=side, fill=fill, anchor=anchor, padx=padx, pady=pady)
         self.lbl_upper_caption.pack(side='top', fill='x', anchor='n')
         self.input.pack(side='top', fill='x', anchor='n')
@@ -754,7 +754,7 @@ class ComboField(FormField):
         if read_only:
             self.input.bind('<Key>','break')
 
-    def pwpack(self, side, fill, anchor, padx, pady):
+    def pack(self, side, fill, anchor, padx, pady):
         self.widgetframe.pack(side=side, fill=fill, anchor=anchor, padx=padx, pady=pady)
         self.lbl_upper_caption.pack(side='top', fill='x', anchor='n')
         self.input.pack(side='top', fill='x', anchor='n')
@@ -774,7 +774,7 @@ class SpinField(FormField):
         if read_only:
             self.input.bind('<Key>','break')
 
-    def pwpack(self, side, fill, anchor, padx, pady):
+    def pack(self, side, fill, anchor, padx, pady):
         self.widgetframe.pack(side=side, fill=fill, anchor=anchor, padx=padx, pady=pady)
         self.lbl_upper_caption.pack(side='top', fill='x', anchor='n')
         self.input.pack(side='top', fill='x', anchor='n')

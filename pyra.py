@@ -492,6 +492,13 @@ def convertToDuration(start:datetime,finish:datetime,output_unit:str="seconds",r
         elif negative_handling == 'zero':
             return 0
 
+def convertTimeToDuration(start:time,finish:time,output_unit:str="seconds",rounding_mode:str="math",negative_handling:str="normal",reverse:bool=False)-> int:
+    '''คำนวณระยะเวลาในหน่วยวินาที นาที ชั่วโมง หรือวัน จากข้อมูลเวลาสองค่า (ใช้ในกรณีที่ค่าเวลาทั้งสองวันเป็นวันเดียวกัน)'''
+    td = date.today()
+    s = datetime(td.year, td.month, td.day, start.hour, start.minute, start.second)
+    f = datetime(td.year, td.month, td.day, finish.hour, finish.minute, finish.second)
+
+    return convertToDuration(s,f,output_unit,rounding_mode,negative_handling,reverse)
 
 def removeDuplicates(list:list) -> list:
     '''Returns a new list as a result of duplicated values elimination from a given list.'''
